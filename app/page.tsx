@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import "./globals.css";
 import { githubRepo } from "./lib/githubRepo";
+import { FaCircle, FaStar, FaCodeBranch, FaExclamationCircle } from "react-icons/fa";
 
 export default function Home() {
   type Language = {
@@ -52,7 +53,7 @@ export default function Home() {
     setIndex((prev) => (prev === 29 ? 0 : prev + 1));
   }
   return (
-    <div>
+    <div className="main">
       <h1 className="title">GitHub Repository Finder</h1>
       <select
         className="input-box"
@@ -78,10 +79,10 @@ export default function Home() {
           <p>{data.items[index]?.name}</p>
           <p>{data.items[index]?.description}</p>
           <div className="result-small">
-            <p>{data.items[index]?.language}</p>
-            <p>{data.items[index]?.stargazers_count}</p>
-            <p>{data.items[index]?.forks}</p>
-            <p>{data.items[index]?.open_issues}</p>
+            <p><FaCircle style={{ color: "#f1e05a", fontSize: "10px" }} /> {data.items[index]?.language}</p>
+            <p><FaStar /> {data.items[index]?.stargazers_count}</p>
+            <p><FaCodeBranch /> {data.items[index]?.forks}</p>
+            <p><FaExclamationCircle /> {data.items[index]?.open_issues}</p>
           </div>
           <button className="refresh-btn" onClick={handleRefresh}>{err?"Click to retry": "Refresh"}</button>
         </div>
